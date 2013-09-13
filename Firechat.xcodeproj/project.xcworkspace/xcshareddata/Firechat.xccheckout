@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E980F85A-9468-41DA-B252-3E7477BBFC0F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Firechat</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>29519177-DB0A-4C24-A405-F629186CD156</key>
+		<string>https://github.com/firebase/firechat-ios.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Firechat.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>29519177-DB0A-4C24-A405-F629186CD156</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/firebase/firechat-ios.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>29519177-DB0A-4C24-A405-F629186CD156</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>29519177-DB0A-4C24-A405-F629186CD156</string>
+			<key>IDESourceControlWCCName</key>
+			<string>firechat-ios</string>
+		</dict>
+	</array>
+</dict>
+</plist>
