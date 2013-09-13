@@ -10,10 +10,13 @@
 
 #import "ViewController.h"
 
-#define kFirechatNS @"https://firechat-ios.firebaseio-demo.com/"
+@interface ViewController ()
+@property (nonatomic, strong) FireChat* fireChat;
+@end
 
 @implementation ViewController
 
+@synthesize fireChat;
 @synthesize nameField;
 @synthesize textField;
 @synthesize tableView;
@@ -25,22 +28,12 @@
 {
     [super viewDidLoad];
 	
-    // Initialize array that will store chat messages.
-    self.chat = [[NSMutableArray alloc] init];
-    
-    // Initialize the root of our Firebase namespace.
-    self.firebase = [[Firebase alloc] initWithUrl:kFirechatNS];
-    
     // Pick a random number between 1-1000 for our username.
-    self.name = [NSString stringWithFormat:@"Guest%d", arc4random() % 1000];
-    [nameField setTitle:self.name forState:UIControlStateNormal];
-    
-    [self.firebase observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
-        // Add the chat message to the array.
-        [self.chat addObject:snapshot.value];
-        // Reload the table view so the new message will show up.
-        [self.tableView reloadData];
-    }];
+    NSString *name = [NSString stringWithFormat:@"Guest%d", arc4random() % 1000];
+    [nameField setTitle:name forState:UIControlStateNormal];
+
+    // Initialize the chat object.
+    self.fireChat = [[FireChat alloc] initWithDelegate:self name:name];
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,9 +49,7 @@
 {
     [aTextField resignFirstResponder];
 
-    // This will also add the message to our local array self.chat because
-    // the FEventTypeChildAdded event will be immediately fired.
-    [[self.firebase childByAutoId] setValue:@{@"name" : self.name, @"text": aTextField.text}];
+    [self.fireChat sendChat:aTextField.text];
 
     [aTextField setText:@""];
     return NO;
@@ -75,7 +66,7 @@
 - (NSInteger)tableView:(UITableView*)table numberOfRowsInSection:(NSInteger)section
 {
     // This is the number of chat messages.
-    return [self.chat count];
+    return [self.fireChat.chat count];
 }
 
 - (UITableViewCell*)tableView:(UITableView*)table cellForRowAtIndexPath:(NSIndexPath *)index
@@ -87,7 +78,7 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    NSDictionary* chatMessage = [self.chat objectAtIndex:index.row];
+    NSDictionary* chatMessage = [self.fireChat.chat objectAtIndex:index.row];
     
     cell.textLabel.text = chatMessage[@"text"];
     cell.detailTextLabel.text = chatMessage[@"name"];
@@ -166,6 +157,12 @@
     if ([textField isFirstResponder]) {
         [textField resignFirstResponder];
     }
+}
+
+#pragma mark - FireChatDelegate
+
+- (void)reloadData {
+    [self.tableView reloadData];
 }
 
 @end
