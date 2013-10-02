@@ -33,7 +33,7 @@
     [nameField setTitle:name forState:UIControlStateNormal];
 
     // Initialize the chat object.
-    self.fireChat = [[FireChat alloc] initWithDelegate:self name:name];
+    self.fireChat = [[FireChat alloc] initWithDelegate:self name:name chatId:@"-J-vGHRqHb6H9imxA511"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -80,7 +80,7 @@
     
     NSDictionary* chatMessage = [self.fireChat.chat objectAtIndex:index.row];
     
-    cell.textLabel.text = chatMessage[@"text"];
+    cell.textLabel.text = chatMessage[@"message"];
     cell.detailTextLabel.text = chatMessage[@"name"];
     
     return cell;

@@ -15,8 +15,10 @@
 // Array of chat messages.
 @property (readonly, nonatomic, strong) NSMutableArray* chat;
 
-// Initialize the object with a delegate and username.
-- (id)initWithDelegate:(id<FireChatDelegate>)delegate name:(NSString *)name;
+// Initialize the object with a delegate, username, and chat room id.
+- (id)initWithDelegate:(id<FireChatDelegate>)delegate
+                  name:(NSString *)name
+                chatId:(NSString *)chatId;
 
 // Sends a chat message.
 - (void)sendChat:(NSString *)text;

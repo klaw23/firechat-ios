@@ -34,7 +34,7 @@
 @synthesize chat;
 @synthesize firebase;
 
-- (id)initWithDelegate:(id<FireChatDelegate>)delegate name:(NSString *)name {
+- (id)initWithDelegate:(id<FireChatDelegate>)delegate name:(NSString *)name chatId:(NSString *)chatId {
     self = [super init];
     if (self) {
         self.delegate = delegate;
@@ -44,7 +44,9 @@
         self.chat = [[NSMutableArray alloc] init];
         
         // Initialize the root of our Firebase namespace.
-        self.firebase = [[Firebase alloc] initWithUrl:kFirechatNS];
+        self.firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@%@",
+                                                       kFirechatNS,
+                                                       chatId]];
         
         
         [self.firebase observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
@@ -61,7 +63,7 @@
 - (void)sendChat:(NSString *)text {
     // This will also add the message to our local array self.chat because
     // the FEventTypeChildAdded event will be immediately fired.
-    [[self.firebase childByAutoId] setValue:@{@"name" : self.name, @"text": text}];
+    [[self.firebase childByAutoId] setValue:@{@"name" : self.name, @"message": text}];
 }
 
 @end
