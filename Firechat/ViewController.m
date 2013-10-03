@@ -33,7 +33,8 @@
     [nameField setTitle:name forState:UIControlStateNormal];
 
     // Initialize the chat object.
-    self.fireChat = [[FireChat alloc] initWithDelegate:self name:name chatId:@"roomname"];
+    self.fireChat = [[FireChat alloc] initWithDelegate:self name:name];
+    [self.fireChat createRoomWithName:@"Chat" completion:nil];
 }
 
 - (void)didReceiveMemoryWarning
