@@ -10,7 +10,7 @@
 
 #import <Firebase/Firebase.h>
 
-#define kFirechatNS @"https://firechat-ios.firebaseio-demo.com/"
+#define kFirechatNS @"https://firechat-ios.firebaseio-demo.com/chat/room-messages"
 
 @interface FireChat ()
 
