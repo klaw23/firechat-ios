@@ -64,8 +64,9 @@
     // This will also add the message to our local array self.chat because
     // the FEventTypeChildAdded event will be immediately fired.
     [[self.firebase childByAutoId] setValue:@{@"name" : self.name, @"message": text}
-                                andPriority:[NSNumber numberWithDouble:[[NSDate date]
-                                                                        timeIntervalSince1970]]];
+                                andPriority:[NSNumber
+                                             numberWithDouble:[[NSDate date]
+                                                               timeIntervalSince1970] * 1000]];
 }
 
 @end
