@@ -63,7 +63,9 @@
 - (void)sendChat:(NSString *)text {
     // This will also add the message to our local array self.chat because
     // the FEventTypeChildAdded event will be immediately fired.
-    [[self.firebase childByAutoId] setValue:@{@"name" : self.name, @"message": text}];
+    [[self.firebase childByAutoId] setValue:@{@"name" : self.name, @"message": text}
+                                andPriority:[NSNumber numberWithDouble:[[NSDate date]
+                                                                        timeIntervalSince1970]]];
 }
 
 @end
